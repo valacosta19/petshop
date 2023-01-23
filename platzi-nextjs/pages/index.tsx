@@ -1,20 +1,22 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import fetch from "isomorphic-fetch";
 import Image from "next/image";
 
+export const getStaticProps = async (params) => {
+  const response = await fetch("https://petshop-psi.vercel.app/api/products");
+  //cambiamos el nombre de data a productList
+  const { data: productList }: TAPIResponse = await response.json();
+
+  return {
+    props: {
+      productList,
+    },
+  };
+};
+
 //Pagina básica. Index siempre va a ser Home
-const Home = () => {
-  const [productList, setProductList] = useState<TProduct[]>([]);
-
-  useEffect(() => {
-    window
-      .fetch("api/products")
-      .then((response) => response.json())
-      .then(({ data }) => {
-        setProductList(data);
-      });
-  }, []);
-
+const Home = ({ productList }: { productList: TProduct[] }) => {
   return (
     <div>
       <h1>My Pet Shop</h1>
