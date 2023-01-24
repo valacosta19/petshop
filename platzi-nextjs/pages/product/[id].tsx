@@ -42,8 +42,8 @@ const ProductItem = ({ product }: { product: TProduct }) => {
       <Image
         src={product?.image}
         alt={product?.name}
-        width="200"
-        height="200"
+        width="300"
+        height="300"
       />
       <p>{product?.name}</p>
       <p>{product?.price}</p>
