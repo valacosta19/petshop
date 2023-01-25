@@ -1,6 +1,23 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import ProductList from "@components/ProductList";
+import styled from "styled-components";
+import Image from "next/image";
+
+export const Container = styled.div`
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  /* max-width: 1600px; */
+  /* margin: auto; */
+  /* padding: 2rem; */
+`;
+
+const ImageContainer = styled.div`
+  width: 100vw;
+  height: 30vh;
+  position: relative;
+`;
 
 export const getStaticProps = async (params) => {
   const response = await fetch("https://petshop-psi.vercel.app/api/products");
@@ -17,10 +34,17 @@ export const getStaticProps = async (params) => {
 //Pagina básica. Index siempre va a ser Home
 const Home = ({ productList }: { productList: TProduct[] }) => {
   return (
-    <div>
-      <h1>My Pet Shop</h1>
+    <Container>
+      <ImageContainer>
+        <Image
+          src="/hero-petshop.jpg"
+          alt="owner and dog running in the sand"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </ImageContainer>
       <ProductList productList={productList} />
-    </div>
+    </Container>
   );
 };
 

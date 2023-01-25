@@ -1,0 +1,30 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Domaine Display', sans-serif;
+  color: #273043;
+  font-size: 1.1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-family: "Sofia", sans-serif;
+  color: #A45B34;
+}
+
+h2 {
+  font-weight: bolder;
+  color: #A45B34;
+  font-size: 3rem;
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #7389AE;
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: #273043;
+}

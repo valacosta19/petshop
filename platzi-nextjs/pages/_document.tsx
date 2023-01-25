@@ -31,8 +31,17 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
-        <body style={{ margin: 0, padding: 0 }}>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Sofia"
+          />
+          <link
+            href="https://fonts.cdnfonts.com/css/domaine-display"
+            rel="stylesheet"
+          ></link>
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>

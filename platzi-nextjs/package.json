@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "iconsax-react": "^0.0.8",
     "isomorphic-fetch": "^3.0.0",
     "next": "^13.1.5",
     "react": "^18.2.0",

@@ -6,8 +6,9 @@ import styled from "styled-components";
 export const Flex = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   row-gap: 2rem;
+  column-gap: 1.5rem;
 `;
 
 export const Card = styled.div`
@@ -23,22 +24,33 @@ export const TextContainer = styled.div`
   padding: 2px 16px;
 `;
 
+export const Title = styled.h3`
+  text-align: center;
+`;
+
+export const Text = styled.p`
+  text-align: center;
+`;
+
 const ProductList = ({ productList }: { productList: TProduct[] }) => {
   return (
     <Flex>
-      {productList.map(({ id, image, name, price }) => {
-        return (
-          <Link key={id} href={`/product/${id}`}>
-            <Card>
-              <Image src={image} alt={name} width={300} height={300} />
-              <TextContainer>
-                <h2>{name}</h2>
-                <p>{price}</p>
-              </TextContainer>
-            </Card>
-          </Link>
-        );
-      })}
+      <h2>Products</h2>
+      <Flex>
+        {productList.map(({ id, image, name, price }) => {
+          return (
+            <Link key={id} href={`/product/${id}`}>
+              <Card>
+                <Image src={image} alt={name} width={400} height={400} />
+                <TextContainer>
+                  <Title>{name}</Title>
+                  <Text>Price: ${price}</Text>
+                </TextContainer>
+              </Card>
+            </Link>
+          );
+        })}
+      </Flex>
     </Flex>
   );
 };
