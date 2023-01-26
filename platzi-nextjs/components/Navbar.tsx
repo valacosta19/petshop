@@ -17,14 +17,18 @@ export const Flex = styled.div`
 
 const Title = styled.h1`
   font-size: 1.2rem;
+  margin: 0;
 `;
 
 const Navbar = () => {
   return (
     <Nav>
       <Flex>
-        <Link href="/" style={{ display: "flex" }}>
-          <Image alt="logo" src="/logo.jpg" width={60} height={60} />
+        <Link
+          href="/"
+          style={{ display: "flex", columnGap: "10px", alignItems: "center" }}
+        >
+          <Image alt="logo" src="/logo.jpg" width={50} height={50} />
           <Title>My Petite Pet Shop</Title>
         </Link>
         <Link href="/cart">

@@ -2,6 +2,28 @@ import React from "react";
 import { GetStaticProps } from "next";
 import fetch from "isomorphic-fetch";
 import Image from "next/image";
+import styled from "styled-components";
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+  column-gap: 10px;
+  max-width: 850px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const Content = styled.div`
+  flex-grow: 1;
+`;
+
+const Price = styled.p`
+  font-size: 2rem;
+`;
 
 export const getStaticPaths = async () => {
   const response = await fetch("https://petshop-psi.vercel.app/api/products");
@@ -38,16 +60,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ProductItem = ({ product }: { product: TProduct }) => {
   return (
     //el id es por el mismo nombre del archivo
-    <div>
+    <Flex>
       <Image
         src={product?.image}
         alt={product?.name}
-        width="300"
-        height="300"
+        width="400"
+        height="400"
       />
-      <p>{product?.name}</p>
-      <p>{product?.price}</p>
-    </div>
+      <Content>
+        <h2>{product?.name}</h2>
+        <p>{product.attributes.description}</p>
+        <Price>${product?.price}</Price>
+      </Content>
+    </Flex>
   );
 };
 
