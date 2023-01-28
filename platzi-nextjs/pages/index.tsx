@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 50vh;
   position: relative;
 `;
 
@@ -37,7 +37,7 @@ const Home = ({ productList }: { productList: TProduct[] }) => {
     <Container>
       <ImageContainer>
         <Image
-          src="/hero-petshop.jpg"
+          src="/hero-dog.jpg"
           alt="owner and dog running in the sand"
           fill
           style={{ objectFit: "cover" }}

@@ -6,14 +6,15 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f3edda;
+  background-color: var(--color-secondary);
   padding: 20px;
   row-gap: 1.5rem;
+  margin-top: auto;
 `;
 
 const Link = styled.a`
   text-decoration: underline;
-  color: #8ea604;
+  color: var(--color-green);
 `;
 
 const Footer = () => {

@@ -3,9 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import { ShoppingCart } from "iconsax-react";
+import { COLORS } from "@styles/globalStyles";
 
 export const Nav = styled.nav`
-  background-color: #f3edda;
+  background-color: var(--color-secondary);
   padding: 15px;
 `;
 
@@ -32,7 +33,7 @@ const Navbar = () => {
           <Title>My Petite Pet Shop</Title>
         </Link>
         <Link href="/cart">
-          <ShoppingCart size="44" color="#8EA604" />
+          <ShoppingCart size="44" color={COLORS.green} />
         </Link>
       </Flex>
     </Nav>

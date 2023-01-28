@@ -3,8 +3,9 @@ import { GetStaticProps } from "next";
 import fetch from "isomorphic-fetch";
 import Image from "next/image";
 import styled from "styled-components";
+import Counter from "@components/Counter";
 
-const Flex = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,6 +24,30 @@ const Content = styled.div`
 
 const Price = styled.p`
   font-size: 2rem;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const AddToCart = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  padding: 8px 20px;
+  background-color: var(--color-green);
+  border-style: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 60%;
+  cursor: pointer;
+
+  :hover {
+    background-color: var(--color-blue);
+    transition: all 0.5s;
+  }
 `;
 
 export const getStaticPaths = async () => {
@@ -60,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ProductItem = ({ product }: { product: TProduct }) => {
   return (
     //el id es por el mismo nombre del archivo
-    <Flex>
+    <Container>
       <Image
         src={product?.image}
         alt={product?.name}
@@ -71,8 +96,13 @@ const ProductItem = ({ product }: { product: TProduct }) => {
         <h2>{product?.name}</h2>
         <p>{product.attributes.description}</p>
         <Price>${product?.price}</Price>
+
+        <ButtonsContainer>
+          <Counter />
+          <AddToCart>Add to cart</AddToCart>
+        </ButtonsContainer>
       </Content>
-    </Flex>
+    </Container>
   );
 };
 
