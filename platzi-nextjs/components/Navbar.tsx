@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import { ShoppingCart } from "iconsax-react";
 import { COLORS } from "@styles/globalStyles";
+import { Price_data } from "context/Context";
 
 export const Nav = styled.nav`
   background-color: var(--color-secondary);
@@ -22,6 +23,7 @@ const Title = styled.h1`
 `;
 
 const Navbar = () => {
+  const { price } = useContext(Price_data);
   return (
     <Nav>
       <Flex>
@@ -32,8 +34,12 @@ const Navbar = () => {
           <Image alt="logo" src="/logo.jpg" width={50} height={50} />
           <Title>My Petite Pet Shop</Title>
         </Link>
-        <Link href="/cart">
+        <Link
+          href="/cart"
+          style={{ display: "flex", alignItems: "center", columnGap: "5px" }}
+        >
           <ShoppingCart size="44" color={COLORS.green} />
+          <p>{price}</p>
         </Link>
       </Flex>
     </Nav>

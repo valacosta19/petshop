@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GetStaticProps } from "next";
 import fetch from "isomorphic-fetch";
 import Image from "next/image";
 import styled from "styled-components";
 import Counter from "@components/Counter";
+import { Price_data } from "context/Context";
 
 const Container = styled.div`
   display: flex;
@@ -83,6 +84,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 //Páginas dinámicas
 const ProductItem = ({ product }: { product: TProduct }) => {
+  const { price, setPrice } = useContext(Price_data);
+
+  const AddProduct = () => {
+    setPrice((prevPrice) => prevPrice + product.price);
+  };
+
+  const RemoveProduct = () => {
+    setPrice((prevPrice) => prevPrice - product.price);
+  };
+
   return (
     //el id es por el mismo nombre del archivo
     <Container>
@@ -98,7 +109,7 @@ const ProductItem = ({ product }: { product: TProduct }) => {
         <Price>${product?.price}</Price>
 
         <ButtonsContainer>
-          <Counter />
+          <Counter AddProduct={AddProduct} RemoveProduct={RemoveProduct} />
           <AddToCart>Add to cart</AddToCart>
         </ButtonsContainer>
       </Content>

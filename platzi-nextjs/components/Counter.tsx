@@ -24,17 +24,32 @@ const Text = styled.p`
   padding: 0px 15px;
 `;
 
-const Counter = () => {
+const Counter = ({
+  AddProduct,
+  RemoveProduct,
+}: {
+  AddProduct: () => void;
+  RemoveProduct: () => void;
+}) => {
   const [counter, setCounter] = useState(0);
+
+  const ProductAddition = () => {
+    setCounter((prevCounter) => prevCounter + 1);
+    AddProduct();
+  };
+
+  const ProductSubstraction = () => {
+    if (counter > 0) {
+      setCounter((prevCounter) => prevCounter - 1);
+      RemoveProduct();
+    }
+  };
+
   return (
     <Container>
-      <Button onClick={() => setCounter((prevCounter) => prevCounter - 1)}>
-        -
-      </Button>
+      <Button onClick={ProductSubstraction}>-</Button>
       <Text>{counter}</Text>
-      <Button onClick={() => setCounter((prevCounter) => prevCounter + 1)}>
-        +
-      </Button>
+      <Button onClick={ProductAddition}>+</Button>
     </Container>
   );
 };
