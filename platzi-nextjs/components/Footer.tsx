@@ -20,7 +20,7 @@ const Link = styled.a`
 const Footer = () => {
   return (
     <Flex>
-      <Image alt="logo" src="/logo.jpg" width={60} height={60} />
+      <Image alt="logo" src="/logo.jpg" width={25} height={25} />
       <div>
         Copyright © 2023 | Developed by{" "}
         <Link href="https://www.linkedin.com/in/valentina-acosta-rivas-42b429b3">

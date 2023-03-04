@@ -3,7 +3,9 @@
   --color-secondary: #F3EDDA;
   --color-green: #8ea604;
   --color-darkblue: #273043;
-  --color-blue: #7389AE
+  --color-blue: #7389AE;
+  --color-white: #ffffff;
+  --size-mobile: 320px;
 }
 
 html, body {

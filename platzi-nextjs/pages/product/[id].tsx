@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GetStaticProps } from "next";
 import fetch from "isomorphic-fetch";
 import Image from "next/image";
 import styled from "styled-components";
 import Counter from "@components/Counter";
-import { Price_data } from "context/Context";
+import { Modal_data, Price_data, Product_data } from "context/Context";
 
 const Container = styled.div`
   display: flex;
@@ -12,11 +12,18 @@ const Container = styled.div`
   justify-content: center;
   margin: 20px auto;
   column-gap: 10px;
-  max-width: 850px;
+  max-width: 950px;
+  width: 100%;
 
   @media (min-width: 768px) {
     flex-direction: row;
   }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
 `;
 
 const Content = styled.div`
@@ -84,25 +91,31 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 //Páginas dinámicas
 const ProductItem = ({ product }: { product: TProduct }) => {
-  const { price, setPrice } = useContext(Price_data);
+  const { setProductsInCart } = useContext(Product_data);
+  const { setPrice } = useContext(Price_data);
+  const { setOpenModal } = useContext(Modal_data);
+  const [productPrice, setProductPrice] = useState(0);
 
   const AddProduct = () => {
-    setPrice((prevPrice) => prevPrice + product.price);
+    setProductPrice((prevPrice) => prevPrice + product.price);
   };
 
   const RemoveProduct = () => {
-    setPrice((prevPrice) => prevPrice - product.price);
+    setProductPrice((prevPrice) => prevPrice - product.price);
+  };
+
+  const handleAddToCart = () => {
+    setProductsInCart((prevProduct) => [...prevProduct, product]);
+    setPrice(productPrice);
+    setOpenModal(true);
   };
 
   return (
     //el id es por el mismo nombre del archivo
     <Container>
-      <Image
-        src={product?.image}
-        alt={product?.name}
-        width="400"
-        height="400"
-      />
+      <ImageContainer>
+        <Image src={product?.image} alt={product?.name} fill />
+      </ImageContainer>
       <Content>
         <h2>{product?.name}</h2>
         <p>{product.attributes.description}</p>
@@ -110,7 +123,7 @@ const ProductItem = ({ product }: { product: TProduct }) => {
 
         <ButtonsContainer>
           <Counter AddProduct={AddProduct} RemoveProduct={RemoveProduct} />
-          <AddToCart>Add to cart</AddToCart>
+          <AddToCart onClick={handleAddToCart}>Add to cart</AddToCart>
         </ButtonsContainer>
       </Content>
     </Container>
